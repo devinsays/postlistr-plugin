@@ -1,0 +1,18 @@
+.listr-header {
+	border-bottom:1px solid #ddd;
+	padding-bottom:25px;
+	margin-bottom:25px;
+}
+.listr-header form {
+	display: block;
+	margin-bottom:10px;
+}
+#postlistr-app img {
+	max-width:100%;
+	height:auto;
+}
+#postlistr-app .row {
+	border-bottom:1px solid #ddd;
+	padding-bottom:25px;
+	margin-bottom:25px;
+}
