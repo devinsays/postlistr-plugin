@@ -67,8 +67,10 @@
 		toggle: function() {
 			if (this.collection.length > 0) {
 				this.$el.hide();
+				console.log('hide');
 			} else {
 				this.$el.show();
+				console.log('show');
 			}
 		},
 		initialize: function() {
@@ -91,7 +93,7 @@
 	});
 
 	var spinner = new LoadingSpinner({
-		el: '.spinner',
+		el: '#postlistr-spinner',
 		collection: posts
 	});
 

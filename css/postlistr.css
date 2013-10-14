@@ -7,6 +7,9 @@
 	display: block;
 	margin-bottom:10px;
 }
+#postlistr-spinner {
+	margin:0 0 -3px 5px;
+}
 #postlistr-app img {
 	max-width:100%;
 	height:auto;
