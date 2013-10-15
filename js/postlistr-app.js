@@ -15,7 +15,7 @@ window.wp = window.wp || {};
 	});
 
 	postlistr.view.PostView = Backbone.View.extend({
-		template: $('#tmpl-postlistr'),
+		template: wp.template('postlistr'),
 		render: function() {
 			this.$el.html( _.template( $('#tmpl-postlistr').html(), this.model.attributes) );
 			return this;

@@ -57,6 +57,9 @@ class Postlistr_Plugin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 
+		// Include the underscore template
+		add_action( 'admin_footer-' . 'toplevel_page_postlistr' , array( $this, 'postlistr_js_template' ) );
+
 	}
 
 	/**
@@ -119,11 +122,19 @@ class Postlistr_Plugin {
 		if ( $screen->id != $this->hook )
 			return;
 
-		// Load our custom app.js and require backbone
+		// Load our custom postlistr-app.js and require backbone
 		wp_enqueue_script( $this->hook . '-app-script', plugins_url( 'js/postlistr-app.js', __FILE__ ), array( 'wp-backbone' ), $this->version, true );
 
 	}
 
+	/**
+	 * Prints the underscore template in wp_footer
+	 *
+	 * @since 0.1
+	 */
+	public function postlistr_js_template() {
+		include_once( 'postlistr-tmpl.php' );
+	}
 }
 
 new PostListr_Plugin;
