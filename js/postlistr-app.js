@@ -10,9 +10,9 @@
 	});
 
 	var PostView = Backbone.View.extend({
-		template: tmpl['templates/post.tmpl'],
+		template: $('#tmpl-postlistr'),
 		render: function() {
-			this.$el.html(this.template(this.model.attributes));
+			this.$el.html( _.template( $('#tmpl-postlistr').html(), this.model.attributes) );
 			return this;
 		}
 	});
@@ -67,10 +67,8 @@
 		toggle: function() {
 			if (this.collection.length > 0) {
 				this.$el.hide();
-				console.log('hide');
 			} else {
 				this.$el.show();
-				console.log('show');
 			}
 		},
 		initialize: function() {

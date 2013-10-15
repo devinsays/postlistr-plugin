@@ -119,9 +119,6 @@ class Postlistr_Plugin {
 		if ( $screen->id != $this->hook )
 			return;
 
-		// Load template.js and require backbone
-		wp_enqueue_script( $this->hook . '-template-script', plugins_url( 'js/postlistr-templates.js', __FILE__ ), array( 'wp-backbone' ), $this->version, true );
-
 		// Load our custom app.js and require backbone
 		wp_enqueue_script( $this->hook . '-app-script', plugins_url( 'js/postlistr-app.js', __FILE__ ), array( 'wp-backbone' ), $this->version, true );
 

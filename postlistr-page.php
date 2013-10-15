@@ -26,3 +26,22 @@
 	<div id="postlistr-app" class="container-fluid"></div>
 
 </div>
+
+<?php /* Underscore Template */ ?>
+
+<script id="tmpl-postlistr" type="text/template">
+<div class="row">
+	<div>
+	<% if ( featured_image ) { %>
+		<img class="span2" src="<%= featured_image %>" alt="Featured Image for <%- title %>"/>
+	<% } %>
+	</div>
+
+	<div>
+		<h4><a href="<%= URL %>"><%= title %></a></h4>
+		<p class="meta">
+			<em>Posted on <%= new Date( date ).toDateString() %> by <%= author.name %></em>
+		</p>
+	</div>
+</div>
+</script>
