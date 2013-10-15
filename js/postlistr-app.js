@@ -1,15 +1,20 @@
-(function($, Backbone) {
+window.wp = window.wp || {};
 
-	var Post = Backbone.Model.extend({});
+(function($) {
+	var postlistr;
 
-	var Posts = Backbone.Collection.extend({
-		model: Post,
+	postlistr = wp.postlistr = { model: {}, view: {}, controller: {} };
+
+	postlistr.model.Post = Backbone.Model.extend({});
+
+	postlistr.model.Posts = Backbone.Collection.extend({
+		model: postlistr.model.Post,
 		parse: function(response) {
 			return response.posts;
 		}
 	});
 
-	var PostView = Backbone.View.extend({
+	postlistr.view.PostView = Backbone.View.extend({
 		template: $('#tmpl-postlistr'),
 		render: function() {
 			this.$el.html( _.template( $('#tmpl-postlistr').html(), this.model.attributes) );
@@ -17,12 +22,12 @@
 		}
 	});
 
-	var PostList = Backbone.View.extend({
+	postlistr.view.PostList = Backbone.View.extend({
 		render: function() {
 			var $postList = this.$el;
 			$postList.empty();
 			this.collection.each(function(model) {
-				var postView = new PostView({
+				var postView = new postlistr.view.PostView({
 					model: model
 				});
 				postView.render().$el.appendTo($postList);
@@ -35,7 +40,7 @@
 		}
 	});
 
-	var BlogForm = Backbone.View.extend({
+	postlistr.view.BlogForm = Backbone.View.extend({
 		events: {
 			'submit form': 'loadPosts'
 		},
@@ -63,7 +68,7 @@
 		}
 	});
 
-	var LoadingSpinner = Backbone.View.extend({
+	postlistr.view.LoadingSpinner = Backbone.View.extend({
 		toggle: function() {
 			if (this.collection.length > 0) {
 				this.$el.hide();
@@ -76,23 +81,23 @@
 		}
 	});
 
-	var posts = new Posts([], {
+	var posts = new postlistr.model.Posts([], {
 		url: 'http://public-api.wordpress.com/rest/v1/sites/publisherdemo.wordpress.com/posts/?number=10&callback=?'
 	});
 
-	var postList = new PostList({
+	var postList = new postlistr.view.PostList({
 		collection: posts,
 		el: '#postlistr-app'
 	});
 
-	var blogForm = new BlogForm({
+	var blogForm = new postlistr.view.BlogForm({
 		el: '.listr-header',
 		collection: posts
 	});
 
-	var spinner = new LoadingSpinner({
+	var spinner = new postlistr.view.LoadingSpinner({
 		el: '#postlistr-spinner',
 		collection: posts
 	});
 
-})(jQuery, Backbone);
+}(jQuery));

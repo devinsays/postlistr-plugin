@@ -33,7 +33,7 @@
 <div class="row">
 	<div>
 	<% if ( featured_image ) { %>
-		<img class="span2" src="<%= featured_image %>" alt="Featured Image for <%- title %>"/>
+		<img src="<%= featured_image %>" alt="Featured Image for <%- title %>"/>
 	<% } %>
 	</div>
 
